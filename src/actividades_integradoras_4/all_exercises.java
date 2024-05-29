@@ -102,7 +102,6 @@ public class all_exercises {
                     break;
                 }
             }
-
             if (isPrime) {
                 primeArr[factor] = factor;
                 count++;
@@ -110,15 +109,10 @@ public class all_exercises {
                 isPrime = true;
             }
             factor++;
-
         }
-
         System.out.println("NUmeros primos generados en total: " + count);
-
         for (int i : primeArr) {
-            if (i > 0) {
-                System.out.print(i + " -> ");
-            }
+            if (i > 0) System.out.print(i + " -> ");
         }
     }
 
