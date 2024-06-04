@@ -98,23 +98,10 @@ public class all_exercises {
                     case 1:
                         String newStudent = "";
                         Double newStudentGrade = -1.0;
-                        do {
-                            System.out.print("Ingresa el nombre del alumno que deseas agregar: ");
-                            newStudent = scanner.nextLine().trim().toLowerCase();
 
-                            if (newStudent.isEmpty()) {
-                                System.out.println("El nombre del alumno no puede ser vació. Intentalo...");
-                            }
-                        } while (newStudent.isEmpty());
+                        newStudent = validateStudentName(newStudent);
 
-                        do {
-                            System.out.print("Ingresa la nota del alumno [" + newStudent + "]: ");
-                            newStudentGrade = scanner.nextDouble();
-
-                            if (newStudentGrade < 0.0 || newStudentGrade > 10.0) {
-                                System.out.println("La nota del alumno debe estar entre 0.0 y 10.0. Intentalo...");
-                            }
-                        } while (newStudentGrade < 0.0 || newStudentGrade > 10.0);
+                        newStudentGrade = validateStudentGrade(newStudentGrade, newStudent);
 
                         for (int i = 0; i < students.length; i++) {
                             if (students[i] == null) {
@@ -128,7 +115,7 @@ public class all_exercises {
                                 "Alumno " + "[" + newStudent + ", " + newStudentGrade + "] agregado con éxito");
                         break;
                     case 2:
-                    int count = 1;
+                        int count = 1;
                         String response = "";// [Ana -> 25]
 
                         for (int i = 0; i < students.length; i++) {
@@ -205,8 +192,8 @@ public class all_exercises {
                             System.out.println(
                                     "El alumno(a) [" + studentSearched + "] no se encuentra en la base de datos..");
                         } else {
-                            System.out.print("Ingresa la nota para el alumno [" + studentSearched + "]: ");
-                            newGrade = scanner.nextDouble();
+
+                            newGrade = validateStudentGrade(newGrade, studentSearched);
 
                             studentGrades[studentIndex] = newGrade;
 
@@ -257,5 +244,49 @@ public class all_exercises {
             System.out.println("Solo debes escribir numeros...");
         }
 
+    }
+
+    private static Double validateStudentGrade(Double studentGrade, String studentName) {
+        do {
+            System.out.print("Ingresa la nota del alumno [" + studentName + "]: ");
+            studentGrade = scanner.nextDouble();
+
+            if (studentGrade < 0.0 || studentGrade > 10.0) {
+                System.out.println("La nota del alumno debe estar entre 0.0 y 10.0. Intentalo...");
+            }
+        } while (studentGrade < 0.0 || studentGrade > 10.0);
+
+        return studentGrade;
+    }
+
+    private static String validateStudentName(String newStudent) {
+
+        Boolean isNotCorrect = false;
+        do {
+            System.out.print("Ingresa el nombre del alumno que deseas agregar: ");
+            newStudent = scanner.nextLine().trim().toLowerCase();
+
+            if (newStudent.isEmpty()) {
+                System.out.println("El nombre del alumno no puede ser vació. Intentalo...");
+                isNotCorrect = true;
+            } else {
+                for (int i = 0; i < newStudent.length(); i++) {
+                    if (Character.isDigit(newStudent.charAt(i))) {
+                        System.out.println("El nombre del alumno no puede tener números. Intentalo...");
+                        isNotCorrect = true;
+                        break;
+                    } else if (Character.isWhitespace(newStudent.charAt(i))) {
+                        System.out.println("El nombre del alumno no puede tener espacios. Intentalo...");
+                        isNotCorrect = true;
+                        break;
+                    } else {
+                        isNotCorrect = false;
+                    }
+                }
+            }
+
+        } while (isNotCorrect);
+
+        return newStudent;
     }
 }
