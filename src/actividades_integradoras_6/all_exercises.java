@@ -246,6 +246,9 @@ public class all_exercises {
 
     }
 
+    /*
+     * Validate the grade that one student must have. Return the validate grade
+     */
     private static Double validateStudentGrade(Double studentGrade, String studentName) {
         do {
             System.out.print("Ingresa la nota del alumno [" + studentName + "]: ");
@@ -259,6 +262,9 @@ public class all_exercises {
         return studentGrade;
     }
 
+    /*
+     * Validate the name that one student must have. Return the validate name
+     */
     private static String validateStudentName(String newStudent) {
 
         Boolean isNotCorrect = false;
