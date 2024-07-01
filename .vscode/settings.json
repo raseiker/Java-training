@@ -1,7 +1,10 @@
 {
-    "java.project.sourcePaths": ["src"],
+    "java.project.sourcePaths": [
+        "src",
+        "test"
+    ],
     "java.project.outputPath": "bin",
     "java.project.referencedLibraries": [
-        "lib/**/*.jar"
+        "g:\\Mi unidad\\document\\QA course\\modulo III\\lesson 2\\ejercicio_en_clase\\lib\\junit-platform-console-standalone-1.11.0-M2.jar"
     ]
 }
